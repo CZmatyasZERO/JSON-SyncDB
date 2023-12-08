@@ -1,0 +1,24 @@
+{
+  "name": "json-syncdb",
+  "version": "1.0.0",
+  "description": "Simple database solution for very small projects",
+  "main": "./src/index.js",
+  "scripts": {
+  },
+  "keywords": [
+    "db",
+    "database",
+    "json",
+    "sync"
+  ],
+  "author": "CZmatyasZERO",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CZmatyasZERO/JSON-SyncDB.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CZmatyasZERO/JSON-SyncDB/issues"
+  },
+  "homepage": "https://github.com/CZmatyasZERO/JSON-SyncDB#readme"
+}
