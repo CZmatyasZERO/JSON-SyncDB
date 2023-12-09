@@ -3,11 +3,16 @@ const fs = require("node:fs")
 class JSONDB {
     _dataObj = {}
     data = {}
-    constructor(filePath = "./data.json") {
+    constructor(filePath = "./data.json", readable = false) {
         if(!fs.existsSync(filePath)) {
             fs.writeFileSync(filePath, "{}", {encoding: "utf-8"})
         } else {
-            this._dataObj = JSON.parse(fs.readFileSync(filePath, {encoding: "utf-8"}))
+            let NewData = fs.readFileSync(filePath, {encoding: "utf-8"})
+            if(NewData === "") {
+              fs.writeFileSync(filePath, "{}", {encoding: "utf-8"})
+            } else {
+              this._dataObj = JSON.parse(NewData)
+            }
         }
         fs.openSync(filePath, "w")
         const handler = {
@@ -26,17 +31,20 @@ class JSONDB {
             },
             set(target, key, value) {
               target[key] = value;
-              fs.truncateSync(filePath, 0)
-              fs.writeFile(filePath, JSON.stringify(this.data), {encoding:"utf-8"}, (err) => {
-              })
+              try {
+                fs.truncateSync(filePath, 0)
+                fs.writeFileSync(filePath, JSON.stringify(this.data, null, readable ? 2 : 0), { encoding: "utf-8" });
+              } catch (err) {
+                throw err;
+              }
 
               return true;
             }
         };
           
-          this.data = new Proxy(this._dataObj, handler);
+        this.data = new Proxy(this._dataObj, handler);
     }
 }
 
 Object.defineProperty(exports, "__esModule", { value: true });
-module.exports = JSONDB
+module.exports = { JSONDB }

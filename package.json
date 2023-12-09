@@ -1,8 +1,9 @@
 {
   "name": "json-syncdb",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Simple database solution for very small projects",
   "main": "./src/index.js",
+  "types": "./index.d.ts",
   "scripts": {
   },
   "keywords": [
