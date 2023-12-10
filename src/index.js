@@ -23,6 +23,8 @@ class JSONDB {
               // return if property not found
               if (typeof prop == 'undefined')
                 return;
+              if (prop === null)
+                return;
               // set value as proxy if object
               if (!prop.isProxy && typeof prop === 'object')
                 target[key] = new Proxy(prop, handler);
