@@ -14,7 +14,6 @@ class JSONDB {
               this._dataObj = JSON.parse(NewData)
             }
         }
-        fs.openSync(filePath, "w")
         const handler = {
             data: this._dataObj,
             get(target, key) {
